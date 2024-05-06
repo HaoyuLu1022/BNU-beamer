@@ -10,17 +10,6 @@
     \flushright\includegraphics[height=1cm]{BNU/BNU_name.pdf}
 }
 \addbibresource{ref.bib}
-\setbeamertemplate{background canvas}{
-    \centering
-    \begin{tikzpicture}[remember picture,overlay]
-        % Warning: compilation of tikz is time-consuming. 
-        % \node[opacity=0.2] at (current page.east) {\input{BNU/BNU_icon_Tikz}};
-        % \node[opacity=0.2] at (current page.west) {\input{BNU/BNU_icon_Tikz}};
-        % To include the PDF is recommended.
-        \node[opacity=0.2] at (current page.east) {\includegraphics[width=4cm]{BNU/BNU_icon.pdf}};
-        \node[opacity=0.2] at (current page.west) {\includegraphics[width=4cm]{BNU/BNU_icon.pdf}};
-    \end{tikzpicture}
-}
 
 \begin{document}
     \maketitle
@@ -76,16 +65,43 @@
     \begin{frame}{Slide with references}
         This is to reference a figure (Figure \ref{fig:figure1})\\
         This it to reference a table (Table \ref{tab:table1})\\
-        This is to cite an article \cite{vaswani2017attention}\footnote{Personally this way of citing is not recommended, as \textbf{printbibliography} seems not to behave well in this theme. Will fix later, and any PR/suggestion is welcome. }\\
+        This is to cite an article \cite{vaswani2017attention}\\
+        %\footnote{Personally this way of citing is not recommended, as \textbf{printbibliography} seems not to behave well in this theme. Will fix later, and any PR/suggestion is welcome. }
         This is to cite an article in the format of footnote \footfullcite{vaswani2017attention}
     \end{frame}
 
-    % \section{References}
+    \lecture{Test lecture one}{lone}
+    \begin{frame}{Theorems}
+        \begin{theorem}
+            This is Theorem 1.
+        \end{theorem}
+        \begin{definition}
+            This is a definition. 
+        \end{definition}
+        \begin{corollary}
+            This is a corollary. 
+        \end{corollary}
+    \end{frame}
 
-    % Adding the option 'allowframebreaks' allows the contents of the slide to be expanded in more than one slide.
-    % \begin{frame}[allowframebreaks]{References}
-    %     \tiny\bibliography{references}
-    %     \bibliographystyle{apalike}
-    % \end{frame}
-    \printbibliography[title={References},heading=bibnumbered]
+    \lecture{Test lecture two}{ltwo}
+    \begin{frame}{Formula}
+        \begin{theorem}
+            This is Theorem 2. 
+        \end{theorem}
+        This is an equation block: 
+        \begin{equation}
+            H(x)=-\sum\limits_i^Np(x_i)\log p(x_i).
+        \end{equation}
+        This is an inline equation: $H(x)=-\sum\limits_i^Np(x_i)\log p(x_i)$。
+    \end{frame}
+
+    \section{References}
+
+    % Adding the option 'allowframebreaks' allows the contents of the slide to be expanded in more than one slide. 
+    % If your references can be listed within one page, may remove the option to rmeove the numbering following the frame title
+    \begin{frame}[allowframebreaks]{References}
+        % \tiny\bibliography{references}
+        % \bibliographystyle{apalike}
+        \printbibliography[heading=none]
+    \end{frame}
 \end{document}

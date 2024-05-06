@@ -1,7 +1,7 @@
 %!TEX program = xelatex
 \documentclass{beamer}
 
-\usepackage[UTF8, fontset=windows]{ctex} 
+\usepackage[UTF8]{ctex} 
 
 \usetheme{metropolis}  
 \title{BNU Beamer模板}
@@ -13,17 +13,6 @@
     \flushright\includegraphics[height=1cm]{BNU/BNU_name.pdf}
 }
 \addbibresource{ref.bib}
-\setbeamertemplate{background canvas}{
-    \centering
-    \begin{tikzpicture}[remember picture,overlay]
-        % Warning: compilation of tikz is time-consuming. 
-        % \node[opacity=0.2] at (current page.east) {\input{BNU/BNU_icon_Tikz}};
-        % \node[opacity=0.2] at (current page.west) {\input{BNU/BNU_icon_Tikz}};
-        % To include the PDF is recommended.
-        \node[opacity=0.2] at (current page.east) {\includegraphics[width=4cm]{BNU/BNU_icon.pdf}};
-        \node[opacity=0.2] at (current page.west) {\includegraphics[width=4cm]{BNU/BNU_icon.pdf}};
-    \end{tikzpicture}
-}
 
 \begin{document}
     \maketitle
@@ -79,16 +68,43 @@
     \begin{frame}{引用}
         这里引用了一张图 (图\ref{fig:figure1})\\
         这里引用了一个表 (表\ref{tab:table1})\\
-        这里引用了一篇文章 \cite{vaswani2017attention}\footnote{不推荐这种引用方式，因为\textbf{printbibliography}在这个主题下看起来不太正常。未来可能会修复。也可通过PR或者Issues提供建议 }\\
+        这里引用了一篇文章 \cite{vaswani2017attention}\\
+        % \footnote{不推荐这种引用方式，因为\textbf{printbibliography}在这个主题下看起来不太正常。未来可能会修复。也可通过PR或者Issues提供建议 }
         这里以脚注形式引用了一篇文章 \footfullcite{vaswani2017attention}
     \end{frame}
+    
+    \lecture{Test lecture one}{lone}
+    \begin{frame}{定理}
+        \begin{theorem}
+            这是定理1。
+        \end{theorem}
+        \begin{definition}
+            这是一个定义。
+        \end{definition}
+        \begin{corollary}
+            这是一个推论。
+        \end{corollary}
+    \end{frame}
 
-    % \section{References}
+    \lecture{Test lecture two}{ltwo}
+    \begin{frame}{公式}
+        \begin{theorem}
+            这是定理2。
+        \end{theorem}
+        这是公式块：
+        \begin{equation}
+            H(x)=-\sum\limits_i^Np(x_i)\log p(x_i).
+        \end{equation}
+        这是内联公式：$H(x)=-\sum\limits_i^Np(x_i)\log p(x_i)$。
+    \end{frame}
 
-    % Adding the option 'allowframebreaks' allows the contents of the slide to be expanded in more than one slide.
-    % \begin{frame}[allowframebreaks]{References}
-    %     \tiny\bibliography{references}
-    %     \bibliographystyle{apalike}
-    % \end{frame}
-    \printbibliography[title={参考文献},heading=bibnumbered]
+    \section{参考文献}
+
+    % Adding the option 'allowframebreaks' allows the contents of the slide to be expanded in more than one slide. 
+    % If your references can be listed within one page, may remove the option to rmeove the numbering following the frame title
+    \begin{frame}[allowframebreaks]{参考文献}
+        % \tiny\bibliography{references}
+        % \bibliographystyle{apalike}
+        \printbibliography[heading=none]
+    \end{frame}
 \end{document}

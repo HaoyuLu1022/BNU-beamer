@@ -129,6 +129,32 @@ maxcitenames=2
 \newcommand{\mreducelistspacing}{\vspace{-\topsep}}
 \metropolis@setdefaults
 \ProcessPgfOptions{/metropolis}
+
+% refer to https://tex.stackexchange.com/questions/188379/theorem-numbering-in-beamer for numbering in theorem environments
+\setbeamertemplate{theorems}[numbered]
+\newtheorem{remark}{备注} %for remark 
+\renewcommand\thetheorem{\arabic{lecture}.\arabic{theorem}}
+\renewcommand\theremark{\arabic{lecture}.\arabic{remark}}
+\makeatletter
+\@addtoreset{theorem}{lecture}
+\@addtoreset{remark}{lecture}
+\makeatother
+
+\setbeamertemplate{background canvas}{
+    \centering
+    \begin{tikzpicture}[remember picture,overlay]
+        % Warning: compilation of tikz is time-consuming. 
+        % \node[opacity=0.2] at (current page.east) {\input{BNU/BNU_icon_Tikz}};
+        % \node[opacity=0.2] at (current page.west) {\input{BNU/BNU_icon_Tikz}};
+        % To include the PDF is recommended.
+        \node[opacity=0.2] at (current page.east) {\includegraphics[width=4cm]{BNU/BNU_icon.pdf}};
+        \node[opacity=0.2] at (current page.west) {\includegraphics[width=4cm]{BNU/BNU_icon.pdf}};
+    \end{tikzpicture}
+}
+
+\setbeamertemplate{bibliography item}[text] % Personally don't like the icons
+\AtBeginBibliography{\footnotesize} % Smaller font size for references
+
 \endinput
 %%
 %% End of file `beamerthememetropolis.sty'.
