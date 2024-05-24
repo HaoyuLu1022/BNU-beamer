@@ -16,7 +16,7 @@ The modifications include:
 -   Logo with high-resolution imported. Many thanks to [LeyuDame](https://github.com/LeyuDame) for open-sourcing the high-res logo and corresponding Tikz code
 -   Frequently used packages added to the `beamerthememetropolis.sty` file (based on personal preferences)
 
-For a minimal example, please refer to `eng-test.tex` , `chn-test.tex` and their corresponding `.pdf` files. Previews are shown below. 
+The template is finally published on **Overleaf**, you can also use it at https://www.overleaf.com/latex/templates/bnu-beamermo-ban-slash-bnu-beamer-template/vhxgtfxbmdzt. For a minimal example, please refer to `eng-test.tex` , `chn-test.tex` and their corresponding `.pdf` files. Previews are shown below. 
 
 ![English-preview](figs/eng-preview.png)
 
