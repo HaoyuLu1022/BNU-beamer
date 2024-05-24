@@ -27,11 +27,16 @@
 \RequirePackage{stmaryrd}
 \RequirePackage{amssymb}
 \RequirePackage[
-backend=bibtex,
-citestyle=authortitle,
-style=numeric,
-natbib=true,
-maxcitenames=2
+% backend=bibtex,
+% citestyle=authortitle,
+% style=numeric,
+% natbib=true,
+% maxcitenames=2
+backend=biber, 
+style=gb7714-2015,
+doi=false,%取消显示doi
+url=false,%取消显示原文链接
+gbpunctin=false, 
 ]{biblatex}
 % \addbibresource{ref.bib}
 \newcommand\boxawait{\makebox[1em][l]{$\boxempty$}}
@@ -154,6 +159,8 @@ maxcitenames=2
 
 \setbeamertemplate{bibliography item}[text] % Personally don't like the icons
 \AtBeginBibliography{\footnotesize} % Smaller font size for references
+
+\setbeamertemplate{frametitle continuation}{} % Remove numbering for `allowframebreaks`
 
 \endinput
 %%
