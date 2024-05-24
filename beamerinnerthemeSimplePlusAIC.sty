@@ -1,0 +1,227 @@
+\pgfdeclareverticalshading[lower.bg,upper.bg]{bmb@transition}{200cm}{%
+  color(0pt)=(lower.bg); color(2pt)=(lower.bg); color(4pt)=(lower.bg)}
+
+\setbeamersize{text margin left=2em,text margin right=2em} 
+
+% table of contents (overview)
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}{\leavevmode\leftskip=3.2em\rlap{\hskip-2em\inserttocsectionnumber.\inserttocsubsectionnumber}\inserttocsubsection\par}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[default]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{date}[default]
+
+% General frames
+\setbeamertemplate{frametitle}{\vspace*{-0.2em}
+\bfseries\insertframetitle\par\vskip-1em
+\logo { 
+    \begin{tikzpicture}[overlay,remember picture]
+    \node[left=14cm] at (current page.-25){
+        \includegraphics[width=1.5cm]{AICStyleData/logos/BNU-blue-vertical.png}
+    };
+    \end{tikzpicture}
+    }
+    %-------------------------
+    {\usebeamercolor[fg]{titlegraphic}\insertlogo\par}
+
+}{\vspace*{-5em}}
+
+% Footline
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[ht=3em,sep=0.75em,wd=\paperwidth,leftskip=0.5cm,rightskip=0.5cm]{footlinecolor}
+    % \scriptsize{\insertshortinstitute}
+    \hspace{1cm}
+    \hfill
+    \scriptsize{\insertframenumber/\inserttotalframenumber}
+  \end{beamercolorbox}%
+}
+
+% Template for headings in multicolumn layout
+\setbeamertemplate{column_heading}{
+    \begin{beamercolorbox}{NeonBlue}
+    \end{beamercolorbox}
+}
+
+% Template for the final page of the presentation
+\setbeamertemplate{endpage}{\vspace{8em}
+    
+    \begingroup
+        \centering
+        % ------------------------
+        \begin{beamercolorbox}[sep=8pt,left]{title}
+        \setbeamercolor{normal text}{fg=red}
+        \vskip2.5em\par
+        \usebeamerfont{title}\finalpage \par% 
+        \end{beamercolorbox}%
+        \vskip 2.5em\par
+        % ------------------------
+        \begin{beamercolorbox}[sep=8pt,left]{author}
+        \usebeamerfont{author}\insertauthor
+        \end{beamercolorbox}
+        \vskip-2em
+        % ------------------------
+        \vskip1.5em\par
+        \begin{beamercolorbox}[sep=8pt,left]{institute}
+        \usebeamerfont{institute}\insertinstitute
+        \hspace*{0.40\linewidth}
+        \usebeamerfont{date}\hspace{2cm}\hfill \insertdate
+        % \begin{flushright}\insertdate\end{flushright}
+        \end{beamercolorbox}
+        % ------------------------
+
+        % Logo on the end page
+       \titlegraphic{
+        \begin{tikzpicture}[overlay,remember picture]
+        \node[anchor=north west, outer xsep=26pt, outer ysep=20pt] at (current page.north west){
+            \includegraphics[width=12em]{AICStyleData/logos/BNU-white-horizontal.png}
+        };
+        \end{tikzpicture}
+        }
+      
+       {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+    \endgroup
+    \vfill
+
+}
+
+% Title page
+\setbeamertemplate{title page}{
+    \vspace{8em}
+    \begingroup
+        \centering
+        % ------------------------
+        \vspace{60pt} % For my personal use: 38pt
+        \begin{beamercolorbox}[sep=8pt,left]{title}
+        \usebeamerfont{title}\inserttitle\par%
+        \ifx\insertsubtitle\@empty%
+        \else%
+            \vskip0.25em%
+            {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+        \fi%     
+        \end{beamercolorbox}%
+        \vskip4em\par
+        % ------------------------
+        \begin{beamercolorbox}[sep=8pt,left]{author}
+        \usebeamerfont{author}\insertauthor
+        \end{beamercolorbox}
+        \vskip-2em
+        % ------------------------
+        \vskip1.5em\par
+        \begin{beamercolorbox}[sep=8pt,left]{institute}
+        \usebeamerfont{institute}\insertinstitute
+        \hspace*{0.40\linewidth}
+        \usebeamerfont{date}\hspace{2cm}\hfill \insertdate
+        % \begin{flushright}\insertdate\end{flushright}
+        \end{beamercolorbox}
+    
+        % Logo on the title page
+       \titlegraphic{
+        \begin{tikzpicture}[overlay,remember picture]
+        \node[anchor=north west, outer xsep=26pt, outer ysep=20pt] at (current page.north west){
+            \includegraphics[width=12em]{AICStyleData/logos/BNU-white-horizontal.png}
+        };
+        \end{tikzpicture}
+        } 
+       {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+    \endgroup
+    \vfill
+}
+% Progress bar
+
+% Section divider
+\setbeamertemplate{section divider}{
+\logo { 
+    \begin{tikzpicture}[overlay,remember picture]
+    \node[left=14cm] at (current page.-25){
+        \includegraphics[width=1.5cm]{AICStyleData/logos/BNU-blue-vertical.png}
+    };
+    \end{tikzpicture}
+    }
+    \vspace{14em}
+     \begin{beamercolorbox}[sep=0pt,left]{frametitle}
+        \usebeamerfont{frametitle}
+        \insertsectionhead\par%
+        \end{beamercolorbox}%
+    \gradientline\par
+    \vspace{6em}
+    \begin{beamercolorbox}[ht=1em,sep=8pt,wd=\paperwidth,leftskip=0.5cm,rightskip=0.5cm]{footlinecolor}
+    % \scriptsize{\insertshortinstitute}
+    \hspace{1cm}
+    \hfill
+  \end{beamercolorbox}%
+    %-------------------------
+    {\usebeamercolor[fg]{titlegraphic}\insertlogo\par}
+    
+}
+
+
+%Select the Epilogue font (requires luaLatex or XeLaTex compilers)
+\setsansfont{Epilogue}[
+    Path=./AICStyleData/epilogueFont/,
+    Scale=0.9,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]
+
+%----------------------------------------------------------------------------------------
+%	Custom commands
+%----------------------------------------------------------------------------------------
+% Color definition
+\definecolor{BlueIuss}{HTML}{033354}
+% gradient color line for the section separation
+\newcommand{\gradientline}{\noindent%
+    \begin{tikzpicture}
+     \node [rectangle, left color=BlueIuss, right color=Black, anchor=north, minimum width=\linewidth, inner sep=0pt, minimum height=1.5pt] (box) at (current page.north){};
+    \end{tikzpicture}
+}
+
+\newcommand \makesection[1]{
+{
+\usebackgroundtemplate{
+\includegraphics[width=\paperwidth]{AICStyleData/logos/sfondo_white_BNU.png}
+}
+\begin{frame}[plain, noframenumbering]
+    \section{#1}
+    \usebeamertemplate{section divider}
+\end{frame}
+}
+}
+% ----------------------------------------------------------
+
+% command for building the last slide of the presentation
+\newcommand\finalpage{}  % Empty by default.
+\newcommand\finalpagetext[1]{\renewcommand\finalpage{#1}}
+
+\newcommand \makefinalpage{
+   {
+    \usebackgroundtemplate{
+    \includegraphics[width=\paperwidth]{AICStyleData/logos/sfondo_beamer_BNU.png}
+    }
+    \begin{frame}[plain]
+    \usebeamertemplate{endpage}
+    \end{frame}
+    }
+}
+% ----------------------------------------------------------
+
+% command for building the first slide of the presentation
+\newcommand \maketitlepage{
+    {
+    \usebackgroundtemplate{
+    \includegraphics[width=\paperwidth]{AICStyleData/logos/sfondo_beamer_BNU.png}
+    }
+\begin{frame}[plain]
+    % Print the title page as the first slide
+    \titlepage
+\end{frame}
+}
+}
+% ----------------------------------------------------------
+
+% Formatting for header columns in multi-column page
+\newcommand\colheader[1]{\textcolor{BlueIuss}{\textbf{#1}}\par}
+% ----------------------------------------------------------

@@ -1,0 +1,268 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+\documentclass[aspectratio=169,xcolor=dvipsnames, t]{beamer}
+\usepackage{fontspec} % Allows using custom font. MUST be before loading the theme!
+\usetheme{SimplePlusAIC}
+\usepackage{ulem} 
+\usepackage{hhline}
+\usepackage{hyperref}
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and  \bottomrule in tables
+\usepackage{svg} %allows using svg figs
+\usepackage{tikz}
+\usepackage{makecell}
+\usepackage{amsmath} % For \textsubscript command
+% \usepackage[english]{babel}
+\usepackage[backend=biber, 
+style=gb7714-2015,
+doi=false,%取消显示doi
+url=false,%取消显示原文链接
+gbpunctin=false, 
+]{biblatex}
+\usepackage{wrapfig}
+% ADD YOUR PACKAGES BELOW
+\usetikzlibrary{calc,patterns.meta}
+\usepackage{totcount}
+\regtotcounter{section}
+\usepackage{forest}
+\usepackage{colortbl}
+\usepackage{color,soul}
+\usepackage{xcolor}
+\usepackage{nameref}
+\usepackage[UTF8]{ctex}
+\addbibresource{test-ref.bib}
+\AtBeginBibliography{\tiny}
+\usepackage{caption}
+\captionsetup{labelformat=simple}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{subcaption}
+\captionsetup[subfigure]{labelformat=empty, justification=centering}
+\usepackage[ruled, vlined, linesnumbered]{algorithm2e}
+\usepackage{overpic}
+% Redefinition of the \section command so that each one is labeled \label{sec:n} where n is its index 
+\let\oldsection\section
+\renewcommand{\section}[2][\relax]{%
+    \ifx#1\relax
+      \oldsection{#2}%
+    \else
+      \oldsection[#1]{#2}%
+    \fi%
+    \label{sec:\thesection}%
+}
+
+% Definition of custom colors based on the initial figure of the bar by the OP
+\definecolor{myblue}{HTML}{57AED1}
+\definecolor{mygreen}{HTML}{8BC53F}
+\definecolor{mygray}{HTML}{DDDDDD}
+\definecolor{BlueIuss}{HTML}{033354}
+\definecolor{LightBlueIuss}{HTML}{1b4a74}
+
+% Definition of custom tikz styles in order to ease readability
+\tikzset{
+    % Bar style (Argument : color)
+    sectionbar/.style={
+        % Filling with one color as a preaction, in order to avoid reset by the pattern color
+        preaction={fill=#1!70},
+        % Application of the line pattern on to of the fill
+        pattern={Lines[angle=45,distance={6pt},line width=3pt]},pattern color=#1
+    },
+    % Node style (Arguments : color, section number)
+    sectionnode/.style 2 args={
+        fill=#1,
+        draw=white,
+        thick,
+        circle,
+        text=white,
+        radius=10pt,
+        % Display of the section name below the cicle
+        label={[text=#1, text width=2cm, align=center]below:\nameref{sec:#2}},
+        }
+}
+
+
+% Actual definition of the colorbar based on Gonzalo Medina's initial proposal
+\makeatletter
+    \def\pbar@progressbar{} % the progress bar
+    \newcount\pbar@tmpcnta% auxiliary counter
+    \newcount\pbar@tmpcntb% auxiliary counter
+    \newdimen\pbar@pbht %progressbar height
+    \newdimen\pbar@pbwd %progressbar width
+    \newdimen\pbar@tmpdim % auxiliary dimension
+    \pbar@pbwd=\linewidth
+    \pbar@pbht=4pt
+
+% The progress bar
+\def\pbar@progressbar{%
+    \pbar@tmpcnta=\value{section} % tmpcnta stores the section number
+    \pbar@tmpcntb=\totvalue{section} % tmbcountb sotres the total amount of sections
+    \advance\pbar@tmpcntb by 1 % tmbcountb is advanced by 1 in order to have the last bar segment after the last node
+
+    \begin{tikzpicture}[very thin]
+        % Clipping scope to avoid tests for the bar dimensions
+        \begin{scope}
+        % Clipping path
+        \path[rounded corners=2pt,clip] (0pt,{-\pbar@pbht/2}) rectangle (\pbar@pbwd,{\pbar@pbht/2});
+        % Gray bar (from 0 to last section)
+        \path[sectionbar=mygray] (0pt,{-\pbar@pbht/2}) rectangle (\linewidth,{\pbar@pbht/2});
+        % Blue bar (from 0 to the current section)
+        \path[sectionbar=BlueIuss] (0pt,{-\pbar@pbht/2}) rectangle ({(\pbar@tmpcnta-0.5)*\linewidth/\pbar@tmpcntb},{\pbar@pbht/2});
+        % Green bar (from current to next section)
+        \path[sectionbar=LightBlueIuss] ({(\pbar@tmpcnta-0.5)*\linewidth/\pbar@tmpcntb},{-\pbar@pbht/2}) rectangle ({(\pbar@tmpcnta+0.5)*\linewidth/\pbar@tmpcntb},{\pbar@pbht/2});
+        \end{scope}
+        % Drawing of the nodes on top of the bars, based on the number of the current section
+        \foreach \secnumber in {1,...,\totvalue{section}}{
+            % Number is lower, section is past, blue color
+            \ifnum\secnumber<\pbar@tmpcnta
+                \node[sectionnode={BlueIuss}{\secnumber}] at ({(\secnumber-0.5)*\linewidth/\pbar@tmpcntb},0) {\strut\secnumber};
+            \fi
+            % Number is equal, section is current, green color
+            \ifnum\secnumber=\pbar@tmpcnta
+                \node[sectionnode={LightBlueIuss}{\secnumber}] at ({(\secnumber-0.5)*\linewidth/\pbar@tmpcntb},0) {\strut\secnumber};
+            \fi
+            % Number is larger, to be done section, gray color
+            \ifnum\secnumber>\pbar@tmpcnta
+            \node[sectionnode={mygray}{\secnumber}] at ({(\secnumber-0.5)*\linewidth/\pbar@tmpcntb},0) {\strut\secnumber};
+            \fi
+        }
+  \end{tikzpicture}%
+}
+
+\addtobeamertemplate{headline}{}
+{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=10ex,center,dp=-10ex]{white}%
+    \pbar@progressbar%
+  \end{beamercolorbox}%
+}
+\makeatother
+
+\setbeamertemplate{frametitle continuation}{}
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\title[BNU-beamer]{BNU Beamer模板} % The short title appears at the bottom of every slide, the full title is only on the title page
+% \subtitle{Subtitle}
+
+
+\author{Halve Luve}
+\institute[BNU-AI]{北京师范大学人工智能学院}
+% Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+
+\date{\today} % Date, can be changed to a custom date
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitlepage
+%\section{Overview}
+\begin{frame}[t]{目录}
+    % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+    \tableofcontents
+\end{frame}
+
+\makesection{部分一}
+    \begin{frame}{无序列表}
+        以下是无序列表的例子:
+        \begin{itemize}
+            \item 第一点
+            \item 第二点
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{分列展示}
+        \begin{columns}
+            \column{.5\textwidth}
+            这是第一列
+            
+            \column{.5\textwidth}
+            这是第二列
+        \end{columns}
+    \end{frame}
+
+\makesection{部分二}
+    \begin{frame}{表格}
+        \begin{table}
+            \centering
+            \begin{tabular}{ccc}
+                \hline
+                \textbf{标签1} & \textbf{标签2} & \textbf{标签3} \\
+                \hline 
+                值1 & 值2 & 值3 \\ 
+                值4 & 值5 & 值6 \\ 
+                值7 & 值8 & 值9 \\ 
+                \hline
+            \end{tabular}
+            \caption{表1的题注}
+            \label{tab:table1}
+        \end{table}
+    \end{frame}
+
+    \begin{frame}{图像}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=.5\textwidth]{example-image-a}
+            \caption{图1的题注}
+            \label{fig:figure1}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}{引用}
+        这里引用了一张图 (图\ref{fig:figure1})\\
+        这里引用了一个表 (表\ref{tab:table1})\\
+        这里引用了一篇文章 \cite{vaswani2017attention}\\
+        % 这里以脚注形式引用了一篇文章 \footfullcite{vaswani2017attention}
+    \end{frame}
+
+    \lecture{Test lecture one}{lone}
+    \begin{frame}{定理}
+        \begin{theorem}
+            这是定理1。
+        \end{theorem}
+        \begin{definition}
+            这是一个定义。
+        \end{definition}
+        \begin{corollary}
+            这是一个推论。
+        \end{corollary}
+    \end{frame}
+
+    \lecture{Test lecture two}{ltwo}
+    \begin{frame}{公式}
+        \begin{theorem}
+            这是定理2。
+        \end{theorem}
+        这是公式块：
+        \begin{equation}
+            H(x)=-\sum\limits_i^Np(x_i)\log p(x_i).
+        \end{equation}
+        这是内联公式：$H(x)=-\sum\limits_i^Np(x_i)\log p(x_i)$。
+    \end{frame}
+
+\makesection{参考文献}
+
+\begin{frame}[allowframebreaks]{参考文献}
+    % Beamer does not support BibTeX so references must be inserted manually as below
+    \newcommand{\ftcmu}{\fontspec{CMU Serif}\selectfont}
+    \renewcommand{\bibfont}{\ftcmu}
+    \setbeamertemplate{bibliography item}[text]
+    \vspace{-20pt}
+    % For compactness, 2-column layout is employed; feel free to revise or remove the multicols layout
+    \begin{multicols}{2}
+        \printbibliography[heading=none]
+    \end{multicols}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+% Final PAGE
+% Set the text that is showed on the final slide
+\finalpagetext{感谢倾听\quad 恳请指正}
+%----------------------------------------------------------------------------------------
+\makefinalpage
+%----------------------------------------------------------------------------------------
+
+\end{document}
