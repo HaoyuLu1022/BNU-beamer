@@ -7,19 +7,21 @@ This is a beamer template dedicated for BNU modified based on SimplePlus theme. 
 - Replacement of logos (self-made, high-resolution)
 - Frequently used packages added (based on personal preferences)
 
+This is not published on Overleaf, as drawing progress bar with Tikz is highly inefficient, and certainly won't be completed with Overleaf's limited compliation time. 
+
 For a minimal example, please refer to `eng-test.tex` , `chn-test.tex` and their corresponding `.pdf` files. Previews are shown below. 
 
-![English-preview](eng-preview.png)
+![English-preview](figs/eng-preview.png)
 
-![Chinese-preview](chn-preview.png)
+![Chinese-preview](figs/chn-preview.png)
 
 ## Quick start
 
 Compilation of the English version has been tested on macOS 14 with TexLive 2020. Both the Chinese ang English versions only passed the tests with **XeLaTeX**. So please do check the compilation options. 
 
-For the first time of compilation, it is recommended to first comment the codes about drawing a progress bar on a general frame (see lines 97-139). Otherwise the compilation is highly likely to fail. After a successful compilation without the progress bar, you are then good to uncomment the codes and re-compile to add the progress bar back, which, at least I think, can make the slides seemingly more pleasant. 
+For the first time of compilation, it is recommended to <u>first comment the codes about drawing a progress bar on a general frame</u> (see lines 97-139). Otherwise the compilation is highly likely to fail. After a successful compilation without the progress bar, you are then good to uncomment the codes and re-compile to add the progress bar back, which, at least I think, can make the slides seemingly more pleasant. 
 
-Be aware that, at line 94 in file`beamerinnerthemeSimplePlusAIC.sty`, the `\vspace` command is for aligning the contents of title page to their positions on the final page. Based on individual design of the title, it is likely that this value should be adjusted[^1]. This is certainly not that elegant, will fix that later. 
+Be aware that, at line 94 in file `beamerinnerthemeSimplePlusAIC.sty`, the `\vspace` command is for aligning the contents of title page to their positions on the final page. Based on individual design of the title, it is likely that this value should be adjusted[^1]. This is certainly not elegant, will fix that later. 
 
 You are free to add some commands in the premable part of the `.tex` files. Any adjustment is also welcome, as long as you know what you are doing. 
 
