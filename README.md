@@ -28,4 +28,4 @@ Compilation of the English version has been tested both on WSL 2 (Ubuntu 22.04.4
 
 You are free to add some commands in the premable part of the `.tex` files. However, for better immersiveness when editing, most preamble options, pre-adjusted based on my presonal aesthetic standard, are encapsulated in the `.sty` files (primarily in `beamerthememetropolis.sty`). Any adjustment is also welcome, as long as you know what you are doing. 
 
-For any question, please feel free to contact me via Issues and [email](mailto:202011081001@mail.bnu.edu.cn).
+For any question, please feel free to contact me via Issues and [email](mailto:202011081001@mail.bnu.edu.cn). **Please indicate which branch the question is about.** 
