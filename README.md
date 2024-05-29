@@ -25,7 +25,7 @@ Be aware that, at line 94 in file `beamerinnerthemeSimplePlusAIC.sty`, the `\vsp
 
 You are free to add some commands in the premable part of the `.tex` files. Any adjustment is also welcome, as long as you know what you are doing. 
 
-For any question, please feel free to contact me via Issues and [email](mailto:202011081001@mail.bnu.edu.cn).
+For any question, please feel free to contact me via Issues and [email](mailto:202011081001@mail.bnu.edu.cn). **Please indicate which branch the question is about.** 
 
 ## AIC visual identity
 SimplePlus theme was adapted to use the [visual identity of AIC](https://smart-helenium-3a1.notion.site/Visual-identity-e194f93a8645492b8d00d52d759f61cc) in terms of logotypes, colors and font selections.
